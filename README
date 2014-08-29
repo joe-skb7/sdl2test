@@ -1,0 +1,35 @@
+Dependencies
+============
+
+This project depends on SDL2.0 libraries. Run next command to install
+depencencies:
+
+$ sudo aptitude install libsdl2-2.0-0 libsdl2-dev
+
+  - libsdl2-2.0-0   - SDL2 libraries
+  - libsdl2-dev     - SDL2 headers (for development)
+
+
+Building the project
+====================
+
+$ make
+
+
+Running the project
+===================
+
+$ ./sdl2test
+
+
+Cleaning the project
+====================
+
+$ make clean
+
+
+HACKING
+=======
+
+API by category: https://wiki.libsdl.org/APIByCategory
+API by name: https://wiki.libsdl.org/CategoryAPI
