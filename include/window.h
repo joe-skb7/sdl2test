@@ -12,6 +12,14 @@ struct window_params {
 	int h;			/* height, px */
 };
 
-int window_show_img(const struct window_params *wp, const char *image_path);
+struct color {
+	uint8_t r;		/* red component */
+	uint8_t g;		/* green component */
+	uint8_t b;		/* blue component */
+	uint8_t a;		/* alpha (transparent) component */
+};
+
+int window_show_img(const struct window_params *wp, const struct color *c,
+		const char *image_path);
 
 #endif /* WINDOW_H */

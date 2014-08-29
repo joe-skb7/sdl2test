@@ -11,6 +11,15 @@ static const struct window_params wp = {
 	.w	= 640,
 	.h	= 480,
 };
+
+/* Purple color (Deep Purple rocks!) */
+static const struct color color = {
+	.r = 127,
+	.g = 0,
+	.b = 127,
+	.a = 255,
+};
+
 static const char *image_path = "share/rock-tux.png";
 
 int main(int argc, char *argv[])
@@ -21,7 +30,7 @@ int main(int argc, char *argv[])
 	(void)argc;
 	(void)argv;
 
-	res = window_show_img(&wp, image_path);
+	res = window_show_img(&wp, &color, image_path);
 	if (res != 0) {
 		fprintf(stderr, " ** Error: fail to run SDL2 window; "
 				"error code: %d\n", res);

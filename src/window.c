@@ -14,7 +14,8 @@
  *
  * Returns 0 on success or error code on failure.
  */
-int window_show_img(const struct window_params *wp, const char *image_path)
+int window_show_img(const struct window_params *wp, const struct color *c,
+		const char *image_path)
 {
 	int ret = 0;
 	SDL_Window *wnd;
@@ -75,6 +76,7 @@ int window_show_img(const struct window_params *wp, const char *image_path)
 				break;
 		}
 
+		SDL_SetRenderDrawColor(ren, c->r, c->g, c->b, c->a);
 		SDL_RenderClear(ren);
 		SDL_RenderCopy(ren, img_tex, NULL, NULL);
 		SDL_RenderPresent(ren);
