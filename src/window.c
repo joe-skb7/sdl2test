@@ -24,7 +24,7 @@ int window_show_img(const struct window_params *wp, const char *image_path)
 
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
 		pr_sdl_err("Unable to initialize SDL");
-		ret = 1;
+		ret = 10;
 		goto exit_init;
 	}
 
@@ -39,7 +39,7 @@ int window_show_img(const struct window_params *wp, const char *image_path)
 			wp->flags);
 	if (wnd == NULL) {
 		pr_sdl_err("Could not create window");
-		ret = 2;
+		ret = 30;
 		goto exit_wnd;
 	}
 
@@ -47,14 +47,14 @@ int window_show_img(const struct window_params *wp, const char *image_path)
 			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (ren == NULL) {
 		pr_sdl_err("Unable to create renderer");
-		ret = 3;
+		ret = 40;
 		goto exit_ren;
 	}
 
 	img_sur = IMG_Load(image_path);
 	if (img_sur == NULL) {
 		pr_sdl_err("Unable to load BMP");
-		ret = 4;
+		ret = 50;
 		goto exit_img_sur;
 	}
 
@@ -62,7 +62,7 @@ int window_show_img(const struct window_params *wp, const char *image_path)
 	SDL_FreeSurface(img_sur);
 	if (img_tex == NULL) {
 		pr_sdl_err("Unable to create texture");
-		ret = 5;
+		ret = 60;
 		goto exit_img_tex;
 	}
 
