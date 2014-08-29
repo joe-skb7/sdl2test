@@ -1,6 +1,6 @@
 #include <window.h>
 #include <stdio.h>
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 /* Print SDL error */
 #define pr_sdl_err(msg) fprintf(stderr, msg ": %s\n", SDL_GetError())
