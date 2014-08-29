@@ -17,8 +17,8 @@ int window_show_img(const struct window_params *wp, const char *image_path)
 	int ret = 0;
 	SDL_Window *wnd;
 	SDL_Renderer *ren;
-	SDL_Surface *bmp_sur;
-	SDL_Texture *bmp_tex;
+	SDL_Surface *img_sur;
+	SDL_Texture *img_tex;
 
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
 		pr_sdl_err("Unable to initialize SDL");
@@ -42,19 +42,19 @@ int window_show_img(const struct window_params *wp, const char *image_path)
 		goto exit_ren;
 	}
 
-	bmp_sur = SDL_LoadBMP(image_path);
-	if (bmp_sur == NULL) {
+	img_sur = SDL_LoadBMP(image_path);
+	if (img_sur == NULL) {
 		pr_sdl_err("Unable to load BMP");
 		ret = 4;
-		goto exit_bmp_sur;
+		goto exit_img_sur;
 	}
 
-	bmp_tex = SDL_CreateTextureFromSurface(ren, bmp_sur);
-	SDL_FreeSurface(bmp_sur);
-	if (bmp_tex == NULL) {
+	img_tex = SDL_CreateTextureFromSurface(ren, img_sur);
+	SDL_FreeSurface(img_sur);
+	if (img_tex == NULL) {
 		pr_sdl_err("Unable to create texture");
 		ret = 5;
-		goto exit_bmp_tex;
+		goto exit_img_tex;
 	}
 
 	/* Drawing the image texture on window */
@@ -67,14 +67,14 @@ int window_show_img(const struct window_params *wp, const char *image_path)
 		}
 
 		SDL_RenderClear(ren);
-		SDL_RenderCopy(ren, bmp_tex, NULL, NULL);
+		SDL_RenderCopy(ren, img_tex, NULL, NULL);
 		SDL_RenderPresent(ren);
 	}
 
 	/* Freeing of all allocated memory */
-	SDL_DestroyTexture(bmp_tex);
-exit_bmp_tex:
-exit_bmp_sur:
+	SDL_DestroyTexture(img_tex);
+exit_img_tex:
+exit_img_sur:
 	SDL_DestroyRenderer(ren);
 exit_ren:
 	SDL_DestroyWindow(wnd);
