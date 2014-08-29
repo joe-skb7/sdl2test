@@ -9,8 +9,9 @@
 
 /* Shows GUI window with image in it.
  *
- * wp: pointer to window params structure
- * image_path: path to image to show in window
+ * wp: window parameters
+ * c: window background color
+ * image_path: path to image to be shown in window
  *
  * Returns 0 on success or error code on failure.
  */
