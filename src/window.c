@@ -35,6 +35,7 @@ int window_show_img(const struct window_params *wp, const struct color *c,
 		ret = 20;
 		goto exit_init;
 	}
+	ret = 0;
 
 	wnd = SDL_CreateWindow(wp->title, wp->x, wp->y, wp->w, wp->h,
 			wp->flags);
