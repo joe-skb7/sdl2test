@@ -4,7 +4,7 @@
 #include <window.h>
 
 static const struct window_params wp = {
-	.title	= "Hello world!",
+	.title	= "Long Live Rock 'n' Roll!",
 	.flags	= SDL_WINDOW_SHOWN,
 	.x	= SDL_WINDOWPOS_UNDEFINED,
 	.y	= SDL_WINDOWPOS_UNDEFINED,
