@@ -11,7 +11,7 @@ static const struct window_params wp = {
 	.w	= 640,
 	.h	= 480,
 };
-static const char *image_path = "share/rock-tux.bmp";
+static const char *image_path = "share/rock-tux.png";
 
 int main(int argc, char *argv[])
 {

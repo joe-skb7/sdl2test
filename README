@@ -4,10 +4,12 @@ Dependencies
 This project depends on SDL2.0 libraries. Run next command to install
 depencencies:
 
-$ sudo aptitude install libsdl2-2.0-0 libsdl2-dev
+$ sudo aptitude install libsdl2-2.0-0 libsdl2-dev libsdl2-image-2.0-0 libsdl2-image-dev
 
-  - libsdl2-2.0-0   - SDL2 libraries
-  - libsdl2-dev     - SDL2 headers (for development)
+  - libsdl2-2.0-0         - SDL2 libraries
+  - libsdl2-image-2.0-0   - SDL2-Image libraries
+  - libsdl2-dev           - SDL2 headers
+  - libsdl2-image-dev     - SDL2-Image headers
 
 
 Building the project

@@ -1,9 +1,11 @@
 #include <window.h>
 #include <stdio.h>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 /* Print SDL error */
-#define pr_sdl_err(msg) fprintf(stderr, msg ": %s\n", SDL_GetError())
+#define pr_sdl_err(msg)		fprintf(stderr, msg ": %s\n", SDL_GetError())
+#define pr_img_err(msg)		fprintf(stderr, msg ": %s\n", IMG_GetError())
 
 /* Shows GUI window with image in it.
  *
@@ -26,6 +28,13 @@ int window_show_img(const struct window_params *wp, const char *image_path)
 		goto exit_init;
 	}
 
+	ret = IMG_Init(IMG_INIT_PNG);
+	if ((ret & IMG_INIT_PNG) != IMG_INIT_PNG) {
+		pr_img_err("Failed to init required PNG support");
+		ret = 20;
+		goto exit_init;
+	}
+
 	wnd = SDL_CreateWindow(wp->title, wp->x, wp->y, wp->w, wp->h,
 			wp->flags);
 	if (wnd == NULL) {
@@ -42,7 +51,7 @@ int window_show_img(const struct window_params *wp, const char *image_path)
 		goto exit_ren;
 	}
 
-	img_sur = SDL_LoadBMP(image_path);
+	img_sur = IMG_Load(image_path);
 	if (img_sur == NULL) {
 		pr_sdl_err("Unable to load BMP");
 		ret = 4;
@@ -79,6 +88,7 @@ exit_img_sur:
 exit_ren:
 	SDL_DestroyWindow(wnd);
 exit_wnd:
+	IMG_Quit();
 	SDL_Quit();
 exit_init:
 	return ret;

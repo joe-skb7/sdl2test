@@ -1,8 +1,8 @@
 CC = gcc
-SDL2_CFLAGS = $(shell sdl2-config --cflags)
-SDL2_LDFLAGS = $(shell sdl2-config --libs)
 CPPFLAGS = -Iinclude
-CFLAGS = -Wall -O2
+CFLAGS = $(shell pkg-config --cflags sdl2 SDL2_image)
+LDFLAGS = $(shell pkg-config --libs sdl2 SDL2_image)
+CFLAGS += -Wall -O2
 BIN = sdl2test
 OBJS =				\
 	src/main.o		\
@@ -11,10 +11,10 @@ OBJS =				\
 default: $(BIN)
 
 %.o: %.c
-	$(CC) $(SDL2_CFLAGS) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 $(BIN): $(OBJS)
-	$(CC) $(SDL2_LDFLAGS) $^ -o $@
+	$(CC) $(LDFLAGS) $^ -o $@
 
 clean:
 	-rm -f $(BIN) $(OBJS)
