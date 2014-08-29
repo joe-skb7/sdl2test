@@ -1,4 +1,5 @@
 #include <window.h>
+#include <assert.h>
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -23,6 +24,10 @@ int window_show_img(const struct window_params *wp, const struct color *c,
 	SDL_Renderer *ren;
 	SDL_Surface *img_sur;
 	SDL_Texture *img_tex;
+
+	assert(wp != NULL);
+	assert(c != NULL);
+	assert(image_path != NULL);
 
 	ret = SDL_Init(SDL_INIT_VIDEO);
 	if (ret != 0) {
