@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 
 	res = window_show_img(&wp, image_path);
 	if (res != 0) {
-		fprintf(stderr, " ** Error: fail to run SDL 2 test; "
+		fprintf(stderr, " ** Error: fail to run SDL2 window; "
 				"error code: %d\n", res);
 		return EXIT_FAILURE;
 	}
