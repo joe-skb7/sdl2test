@@ -23,7 +23,8 @@ int window_show_img(const struct window_params *wp, const struct color *c,
 	SDL_Surface *img_sur;
 	SDL_Texture *img_tex;
 
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+	ret = SDL_Init(SDL_INIT_VIDEO);
+	if (ret != 0) {
 		pr_sdl_err("Unable to initialize SDL");
 		ret = 10;
 		goto exit_init;
