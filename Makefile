@@ -20,7 +20,7 @@ clean:
 	-rm -f $(BIN) $(OBJS)
 
 index:
-	@find . -name '*.[ch]' >cscope.files
+	@find src/ include/ -name '*.[ch]' >cscope.files
 	@cscope -b -q
 	@ctags -L cscope.files
 	@-rm -f cscope.files
