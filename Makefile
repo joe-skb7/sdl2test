@@ -19,4 +19,13 @@ $(BIN): $(OBJS)
 clean:
 	-rm -f $(BIN) $(OBJS)
 
-.PHONY: default clean
+index:
+	@find . -name '*.[ch]' >cscope.files
+	@cscope -b -q
+	@ctags -L cscope.files
+	@-rm -f cscope.files
+
+clean-index:
+	@-rm -f cscope.out cscope.in.out cscope.po.out tags
+
+.PHONY: default clean index clean-index
