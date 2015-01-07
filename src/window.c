@@ -55,9 +55,14 @@ int window_show_img(const struct window_params *wp, const struct color *c,
 	ren = SDL_CreateRenderer(wnd, -1,
 			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (ren == NULL) {
-		pr_sdl_err("Unable to create renderer");
-		ret = 40;
-		goto exit_ren;
+		fprintf(stderr, "Unable to create accelerated renderer\n");
+		fprintf(stderr, "Trying to fallback to software renderer...\n");
+		ren = SDL_CreateRenderer(wnd, -1, SDL_RENDERER_SOFTWARE);
+		if (ren == NULL) {
+			fprintf(stderr, "Unable to create software renderer\n");
+			ret = 40;
+			goto exit_ren;
+		}
 	}
 
 	img_sur = IMG_Load(image_path);
