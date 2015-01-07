@@ -32,14 +32,14 @@ int window_show_img(const struct window_params *wp, const struct color *c,
 	ret = SDL_Init(SDL_INIT_VIDEO);
 	if (ret != 0) {
 		pr_sdl_err("Unable to initialize SDL");
-		ret = 10;
+		ret = -EWSI_SDL_INIT;
 		goto exit_init;
 	}
 
 	ret = IMG_Init(IMG_INIT_PNG);
 	if ((ret & IMG_INIT_PNG) != IMG_INIT_PNG) {
 		pr_img_err("Failed to init required PNG support");
-		ret = 20;
+		ret = -EWSI_IMG_INIT;
 		goto exit_init;
 	}
 	ret = 0;
@@ -48,7 +48,7 @@ int window_show_img(const struct window_params *wp, const struct color *c,
 			wp->flags);
 	if (wnd == NULL) {
 		pr_sdl_err("Could not create window");
-		ret = 30;
+		ret = -EWSI_SDL_CW;
 		goto exit_wnd;
 	}
 
@@ -60,7 +60,7 @@ int window_show_img(const struct window_params *wp, const struct color *c,
 		ren = SDL_CreateRenderer(wnd, -1, SDL_RENDERER_SOFTWARE);
 		if (ren == NULL) {
 			fprintf(stderr, "Unable to create software renderer\n");
-			ret = 40;
+			ret = -EWSI_SDL_CR;
 			goto exit_ren;
 		}
 	}
@@ -68,7 +68,7 @@ int window_show_img(const struct window_params *wp, const struct color *c,
 	img_sur = IMG_Load(image_path);
 	if (img_sur == NULL) {
 		pr_sdl_err("Unable to load BMP");
-		ret = 50;
+		ret = -EWSI_IMG_LOAD;
 		goto exit_img_sur;
 	}
 
@@ -76,7 +76,7 @@ int window_show_img(const struct window_params *wp, const struct color *c,
 	SDL_FreeSurface(img_sur);
 	if (img_tex == NULL) {
 		pr_sdl_err("Unable to create texture");
-		ret = 60;
+		ret = -EWSI_SDL_CTFS;
 		goto exit_img_tex;
 	}
 
