@@ -28,4 +28,6 @@ index:
 clean-index:
 	@-rm -f cscope.out cscope.in.out cscope.po.out tags
 
+include Makefile.check
+
 .PHONY: default clean index clean-index

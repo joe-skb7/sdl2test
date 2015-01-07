@@ -1,0 +1,30 @@
+SPARSE_FLAGS = -Wsparse-all $(CPPFLAGS)
+CPPCHECK_FLAGS = --enable=all -I include
+SPLINT_FLAGS = -weak $(CPPFLAGS)
+
+_check_cppcheck:
+	@echo "---> Checking with cppcheck..."
+	@cppcheck $(CPPCHECK_FLAGS) src/ include/
+	@echo
+
+_check_sparse:
+	@echo "---> Checking with sparse..."
+	@find src/ include/ -type f -name '*.[ch]' \
+		-exec sparse $(SPARSE_FLAGS) {} \;
+	@echo
+
+_check_clang:
+	@echo "---> Checking with clang..."
+	@$(MAKE) clean >/dev/null 2>/dev/null
+	@scan-build-3.5 $(MAKE)
+	@echo
+
+_check_splint:
+	@echo "---> Checking with splint..."
+	@find src/ include/ -type f -name '*.[ch]' \
+		-exec splint $(SPLINT_FLAGS) {} \;
+	@echo
+
+check: _check_cppcheck _check_sparse _check_clang _check_splint
+
+.PHONY: _check_cppcheck _check_sparse _check_clang _check_splint check
