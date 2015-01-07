@@ -19,15 +19,7 @@ $(BIN): $(OBJS)
 clean:
 	-rm -f $(BIN) $(OBJS)
 
-index:
-	@find src/ include/ -name '*.[ch]' >cscope.files
-	@cscope -b -q
-	@ctags -L cscope.files
-	@-rm -f cscope.files
-
-clean-index:
-	@-rm -f cscope.out cscope.in.out cscope.po.out tags
-
+include Makefile.index
 include Makefile.check
 
-.PHONY: default clean index clean-index
+.PHONY: default clean
