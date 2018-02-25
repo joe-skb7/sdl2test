@@ -16,7 +16,7 @@ _check_sparse:
 _check_clang:
 	@echo "---> Checking with clang..."
 	@$(MAKE) clean >/dev/null 2>/dev/null
-	@scan-build-3.5 $(MAKE)
+	@scan-build-3.9 $(MAKE)
 	@echo
 
 _check_splint:
