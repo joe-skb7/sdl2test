@@ -17,7 +17,10 @@ $(BIN): $(OBJS)
 	$(CC) $(LDFLAGS) $^ -o $@
 
 clean:
-	-rm -f $(BIN) $(OBJS)
+	-rm -f $(OBJS)
+
+distclean: clean clean-index
+	-rm -f $(BIN)
 
 include Makefile.index
 include Makefile.check
