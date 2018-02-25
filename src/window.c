@@ -11,9 +11,9 @@
 /**
  * Show GUI window with image in it.
  *
- * @param wp window parameters
- * @param c window background color
- * @param image_path path to image to be shown in window
+ * @param wp Window parameters
+ * @param c Window background color
+ * @param image_path Path to the image to be shown in the window
  *
  * @return true on success or false on failure
  */
