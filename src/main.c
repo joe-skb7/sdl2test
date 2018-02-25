@@ -24,14 +24,14 @@ static const char *image_path = "share/rock-tux.png";
 
 int main(int argc, char *argv[])
 {
-	int res;
+	bool res;
 
 	/* Unused for now */
 	(void)argc;
 	(void)argv;
 
 	res = window_show_img(&wp, &color, image_path);
-	if (res != 0) {
+	if (!res) {
 		fprintf(stderr, " ** Error: fail to run SDL2 window; "
 				"error code: %d\n", res);
 		return EXIT_FAILURE;
