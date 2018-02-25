@@ -8,7 +8,7 @@ OBJS =				\
 	src/main.o		\
 	src/window.o
 
-default: $(BIN)
+all: $(BIN)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
@@ -22,4 +22,4 @@ clean:
 include Makefile.index
 include Makefile.check
 
-.PHONY: default clean
+.PHONY: all clean
