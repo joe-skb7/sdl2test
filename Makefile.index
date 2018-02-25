@@ -1,5 +1,6 @@
 index:
-	@find src/ include/ -type f -name '*.[ch]' >cscope.files
+	@find src/ include/ -type f -name '*.[ch]' > cscope.files
+	@find /usr/include/SDL2/ -type f -name '*.[ch]' >> cscope.files
 	@cscope -b -q
 	@ctags -L cscope.files
 	@-rm -f cscope.files
